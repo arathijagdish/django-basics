@@ -1,0 +1,28 @@
+{% extends "user_base.html" %}
+{% block content %}
+
+{% if message %}
+    <script>
+        swal({
+            title: "Sign In Failed",
+            text: "Invalid email or password",
+            icon: "error",
+        });
+    </script>
+{% endif %}
+    
+<h2 class="text-info text-center">Login</h2>
+  <div class="container">
+      <form method="POST">
+          {{ form.as_p }}
+          {% csrf_token %}
+          <button class="btn btn-warning">Login</button>
+      </form>
+  </div>
+  <script>
+      var els = document.querySelectorAll('input')
+      for (let i = 0; i < els.length; i++) {
+          els[i].classList.add('form-control'); 
+      }
+  </script>
+{% endblock content %}
