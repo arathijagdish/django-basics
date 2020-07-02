@@ -1,0 +1,26 @@
+{% extends "category_base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-4 offset-4">
+            <h1 class="text-center">Craete Sub Category</h1>
+            <form method="POST">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <div class="container">
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-success btn-block">Create</button>
+                        </div>
+                        <div class="col-6">
+                            <a href="" class="btn btn-info btn-block">Back to list</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    
