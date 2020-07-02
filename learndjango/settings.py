@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'books',
     'user',
+    'books',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -122,4 +123,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+AUTH_USER_MODEL = 'accounts.AppUser'
 STATIC_URL = '/assets/'
