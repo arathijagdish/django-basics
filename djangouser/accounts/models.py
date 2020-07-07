@@ -1,5 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.core.validators import (
+    MinLengthValidator,
+    MaxLengthValidator,
+    MinValueValidator,
+    MaxValueValidator,
+)
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -93,3 +99,40 @@ class User(AbstractBaseUser):
     def is_active(self):
         "Is the user active?"
         return self.active
+
+class Customer(models.Model):
+    GENDER = (
+        ('male', 'Male'),
+        ('female', 'Female'),
+    )
+    name = models.CharField(
+        max_length=100,
+        blank=False,
+        verbose_name="Name",
+        validators=[
+            MinLengthValidator(3, "Name is too short"),
+            MaxLengthValidator(50, "Name is too long"),
+        ]
+    )
+    phone = models.CharField(
+        max_length=15,
+        unique=True,
+        validators=[
+            MinLengthValidator(10, "Phone number should have at least 10 digits"),
+            MaxLengthValidator(10, "Phone number should have only least 10 digits"),
+        ]
+    )
+    gender = models.CharField(
+        choices=GENDER,
+        max_length=10,
+    )
+    registered_on = models.DateField(
+        auto_now_add=True,
+    )
+    last_activity = models.DateField(
+        auto_now=True,
+    )
+    user = models.OneToOneField(
+        to=User,
+        on_delete=models.CASCADE,
+    )
