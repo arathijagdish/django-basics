@@ -1,0 +1,24 @@
+{% extends "category_base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-10 offset-1">
+            <h1 class="text-center">Sub category list</h1>
+            <table class="table">
+                <tr>
+                    <th>Category Name</th>
+                    <th>Sub Category list</th>
+                </tr>               
+                {% for c in data %}
+                    <tr>
+                        <td>{{ c.name }}</td>
+                        <td><a href="" class="btn btn-link">View Sub categories</a></td>
+                    </tr>
+                {% endfor %}
+                    
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    
