@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
+from django.core.serializers import json
 from . forms import CategoryForm, SubCategoryForm
 from . models import Category, SubCategory
+from django.http import JsonResponse
 
 # Create your views here.
 def view(request):
@@ -32,3 +34,11 @@ def create_subcategory(request):
             return redirect('view_category')
         else:
             return render(request, 'category/create.html', {'form': scf})
+
+def ajax_get_category_list(request):
+    cats = Category.objects.all()
+    serializer = json.Serializer()
+    jsondata = serializer.serialize(cats)
+    return HttpResponse(jsondata, content_type='text/json')
+    # return JsonResponse(jsondata, safe=False)
+

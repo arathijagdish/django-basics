@@ -1,0 +1,30 @@
+{% extends "category_base.html" %}
+{% block content %}
+<div class="container">
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-info">Save</button>
+    </form>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    $.ajax({
+        type: "get",
+        url: "{% url 'ajax_get_category_list' %}",
+        data: "",
+        // dataType: "dataType",
+        success: function (response) {
+            var content = '';
+            for (let i = 0; i < response.length; i++) {
+                const element = response[i];
+                // console.log(element.fields.name);
+                content += '<option>'+element.fields.name + '</option>' 
+            }
+            $('#category').html(content)
+        }
+    });
+</script>
+{% endblock scripts %}
+    

@@ -21,22 +21,22 @@ class CourseForm(Form):
         )
     )
     video_link=URLField(
-        label='Title',
-        strip=True,
+        label='Video URL',
         min_length=5,
         help_text='Please provide the video url',
         widget=URLInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control',
             }
-        )
+        ),
     )
     category=CharField(
         label='Category',
         min_length=3,
         widget=Select(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control',
+                'id': 'category',
             },
         )
     )
@@ -45,7 +45,8 @@ class CourseForm(Form):
         min_length=5,
         widget=Select(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control',
+                'id': 'subcategory',
             }
         )
     )
